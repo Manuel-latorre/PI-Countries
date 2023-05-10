@@ -37,11 +37,12 @@ const getAllCountries = async () => {
 
 const getCountriesByName = async (name) => {
     const countriesList = await Country.findAll({
-        where: {
-            name: {
-                [Op.iLike]: `%${name}%`
-            },
-        },
+        where: { name: { [Op.iLike]: `%${name}%`} },
+        include: [ {
+            model: Activity,
+            attributes: ["name", "difficulty", "duration", "season"],
+            through: { attributes: [] },
+        }]
     });
     const filtered = countriesList.filter(country => {
         return country.name.common === name;
