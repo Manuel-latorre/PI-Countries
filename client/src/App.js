@@ -1,4 +1,3 @@
-import './App.css';
 import Home from './views/Home/Home';
 import Landing from './views/Landing/Landing';
 import Form from './views/Form/Form';
@@ -19,7 +18,7 @@ function App() {
 
         <Route exact path="/create" render={() => <Form />} />
 
-        <Route exact path="/detail" render={() => <Detail />} />
+        <Route exact path="/detail/:id" render={() => <Detail />} />
 
     </div>
   );

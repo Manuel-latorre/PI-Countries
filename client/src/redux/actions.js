@@ -3,19 +3,21 @@ import axios from "axios";
 
 
 
-export const getCountries = () => {
-    return async function(dispatch){
-        const apiData =  await axios.get("http://localhost:3001/countries")
-        const countries = apiData.data;
-        return dispatch({ type: GET_COUNTRIES, payload: countries})
+export const getCountries = () => async (dispatch) => {
+    try {
+        let json = await axios.get("http://localhost:3001/countries");
+        return dispatch({ type: GET_COUNTRIES, payload: json.data });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
+
+export const getCountry = (id) => {
+    return async function (dispatch){
+        const apiData = await axios.get(`http://localhost:3001/countries/${id}`);
+        const country = apiData.data;
+        dispatch({ type: GET_COUNTRY, payload: country})
     }
 }
-
-//export const getCountry = (id) => {
-//    return async function (dispatch){
-//        const apiData = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
-//        const country = apiData.data;
-//        dispatch({ type: GET_COUNTRY, payload: country})
-//    }
-//}
 
