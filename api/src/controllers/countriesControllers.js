@@ -4,7 +4,8 @@ const { Op } = require('sequelize');
 
 
 const getCountryById = async (id) => {
-    const countryId = await Country.findByPk(id, {include: {
+    const countryId = await Country.findByPk(id, {
+        include: {
         model: Activity,
         attributes: ["name", "difficulty", "duration", "season"],
     }})

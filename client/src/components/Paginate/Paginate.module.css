@@ -1,0 +1,22 @@
+.paginate{
+    display:flex;
+    justify-content: center;
+}
+
+.btnPages{
+    width:50px;
+    height:50px;
+    cursor:pointer;
+    
+}
+
+.numbersPage{
+    display:flex;
+    margin:20px;
+    margin-top:10px;
+    
+}
+
+.pagActive{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

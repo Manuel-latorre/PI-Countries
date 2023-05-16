@@ -1,16 +1,47 @@
 import { useState } from "react";
-import axios from "axios";
-
+import { postActivity, getCountries, getActivities } from "../../redux/actions";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 const Form = () => {
+
+    const dispatch = useDispatch();
+    
 
     const [form, setForm] = useState({
         name: "",
         difficulty: "",
         duration: "",
         season: "",
-        countries: ""
+        countries:""
     })
 
+    const handleChange = (event) => {
+        setForm({
+            ...form,
+            [event.target.name]: event.target.value
+        })
+    }
+
+    const handleCheckSeasons = (event) => {
+        if(event.target.checked) setForm({...form, season: event.target.value})
+    }
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        dispatch(postActivity(form))
+        alert("Actividad turistica creada exitosamente")
+        setForm({
+            name: "",
+            difficulty: "",
+            duration: "",
+            season: "",
+            countries: "",
+        })
+
+    }
+    
+    
     const [errors, setErrors] = useState({
         name: "",
         difficulty: "",
@@ -18,65 +49,52 @@ const Form = () => {
         season: "",
         countries: ""
     })
+    
+    useEffect(() => {
+        dispatch(getCountries())
+        dispatch(getActivities());
+    }, [dispatch])
 
-    const formHandler = (event) => {
-        const property = event.target.name;
-        const value = event.target.value;
-
-        setForm({...form, [property]:value})
-        //validate({...form, [property]:value})
-    }
-
-    //const validate = (form) => {
-        //if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})+$/.test(form.email)) setErrors({...errors, email:""})
-
-       // else setErrors({...errors, email:"Email invalido"})
-        
-        //if(form.email === "") setErrors({...errors, email:""})
-    //}
-
-    const submitHandler = (event) => {
-        event.preventDefault();
-        axios.post("http://localhost:3001/activities", form)
-        .then(res => alert(res))
-        .catch(err => alert(err))
-        
-    }
-
-
+    
+    
+    console.log(form);
     return(
-        <form onSubmit={submitHandler}>
+        <form onSubmit={handleSubmit}>
+            <h1>Crea tu actividad turistica</h1>
             <div>
                 <label>Name: </label>
-                <input type="text" value={form.name} onChange={formHandler} name="name"/>
+                <input type="text" onChange={handleChange} value={form.name} name="name"/>
     
             </div>
 
             <div>
                 <label>Difficulty: </label>
-                <input type="text" value={form.difficulty} onChange={formHandler} name="difficulty"/>
+                <input type="text" onChange={handleChange} value={form.difficulty} name="difficulty"/>
             </div>
 
             <div>
                 <label>Duration: </label >
-                <input type="text" value={form.duration} onChange={formHandler} name="duration"/>
+                <input type="text" onChange={handleChange} value={form.duration} name="duration"/>
             </div>
 
             <div>
-                <label>Season: </label >
-                <input type="text" value={form.season} onChange={formHandler} name="season"/>
+                <label>Country: </label >
+                <input type="text" onChange={handleChange} value={form.countries} name="countries"/>
             </div>
+            
 
             <div>
-                <label>Countries: </label >
-                <input type="text" value={form.countries} onChange={formHandler} name="countries"/>
+                <label>Season</label >
+                <label><input type="checkbox" onChange={handleCheckSeasons} value= "summer" name="summer"/>Summer</label>
+                <label><input type="checkbox" onChange={handleCheckSeasons} value= "fall" name="fall"/>Fall</label>
+                <label><input type="checkbox" onChange={handleCheckSeasons} value= "winter" name="winter"/>Winter</label>
+                <label><input type="checkbox" onChange={handleCheckSeasons} value= "spring" name="spring"/>Spring</label>
             </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit">Crear actividad</button>
 
         </form>
-
-    )
+)
 }
 
 

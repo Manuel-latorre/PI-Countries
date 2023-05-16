@@ -1,5 +1,20 @@
-import { GET_COUNTRIES, GET_COUNTRY } from "./actions-types";
+import { GET_COUNTRIES, GET_COUNTRY, NEXT_PAGE, PREV_PAGE, GET_COUNTRIES_BY_NAME, FILTER_BY_CONTINENT,
+        ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION } from "./actions-types";
 import axios from "axios";
+
+
+
+export const nextPage = () => {
+    return {
+        type: NEXT_PAGE,
+    }
+}
+
+export const prevPage = () => {
+    return {
+        type: PREV_PAGE,
+    }
+}
 
 
 
@@ -8,16 +23,59 @@ export const getCountries = () => async (dispatch) => {
         let json = await axios.get("http://localhost:3001/countries");
         return dispatch({ type: GET_COUNTRIES, payload: json.data });
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
 };
 
 
+export const getCountriesByName = (name) => {
+    return async function (dispatch){
+        try {
+            let json = await axios.get("http://localhost:3001/countries?name=" + name)
+            return dispatch({type: GET_COUNTRIES_BY_NAME, payload: json.data})
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+
 export const getCountry = (id) => {
     return async function (dispatch){
-        const apiData = await axios.get(`http://localhost:3001/countries/${id}`);
-        const country = apiData.data;
+        const json = await axios.get(`http://localhost:3001/countries/${id}`);
+        const country = json.data;
         dispatch({ type: GET_COUNTRY, payload: country})
     }
 }
+
+export const getActivities = () => {
+    return async function (dispatch){
+        let json = await axios.get("http://localhost:3001/activities");
+        const activity = json.data
+        return dispatch({type: GET_ACTIVITIES, payload: activity})
+    }
+}
+
+export const postActivity = (payload) => {
+    return async function(dispatch){
+        let json = await axios.post("http://localhost:3001/activities", payload);
+        const activity = json.data
+        return dispatch({type: POST_ACTIVITY, payload: activity})
+    }
+};
+
+
+export const filterByContinent = (payload) => {
+    return {type: FILTER_BY_CONTINENT, payload}
+}
+
+export const orderByName = (payload) => {
+    return {type: ORDER_BY_NAME, payload}
+}
+
+export const orderByPopulation = (payload) => {
+    return {type: ORDER_BY_POPULATION, payload}
+}
+
+
 

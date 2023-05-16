@@ -1,17 +1,23 @@
 const { Activity, Country } = require('../db')
 
-const  createActivity = async (name, difficulty, duration, season, countryId) => {
+const  createActivity = async (name, difficulty, duration, season, countries) => {
     const newActivity = await Activity.create({name, difficulty, duration, season});
-    await newActivity.addCountry(countryId);
-    return newActivity;
+    let country = await Country.findAll({
+        where: {name: countries}
+    })
+    return await newActivity.addCountry(country);
+    
 };
+
+
 
 const getActivities = async () => {
     return await Activity.findAll({
-        attributes: ['name'],
-        include: Country
+        include: {
+            model: Country,
+            attributes: ['name'],
+        }
     })
-    
 }
 
 module.exports = {
