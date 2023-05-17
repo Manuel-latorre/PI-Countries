@@ -1,0 +1,32 @@
+.landing{
+    background-image:url('./assets/fondoLanding3.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.158);
+    height:100%;
+    width:100vw;
+    position: absolute;
+    display:flex;
+    justify-content:end;
+    align-items:center;
+}
+
+.button{
+    padding:10px;
+    margin-top:50px;
+    margin-right:140px;
+    background-color:white;
+    text-decoration: none;
+    font-size:30px;
+    font-family: 'Tilt Warp', cursive;
+    color:#0C3968;
+    border-radius:15px;
+    position: absolute;
+}
+
+.button:hover{
+    color:white;
+    background-color:grey;
+}

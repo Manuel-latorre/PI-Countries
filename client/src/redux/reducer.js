@@ -1,5 +1,5 @@
 import { GET_COUNTRIES, GET_COUNTRY, NEXT_PAGE, PREV_PAGE, GET_COUNTRIES_BY_NAME, FILTER_BY_CONTINENT,
-         ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION } from "./actions-types";
+        ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION } from "./actions-types";
 
 const initialState = {
     countries: [],
@@ -41,10 +41,12 @@ const rootReducer = (state = initialState, action) => {
             numPage: state.numPage - 1
         }
 
+
         case FILTER_BY_CONTINENT:
             const allCountries = state.allCountries;
             const filterContinent = action.payload === 'All' ? allCountries : allCountries.filter(element => element.continent === action.payload)
             return {...state, countries: filterContinent}
+
 
         case ORDER_BY_NAME: 
         let sort = action.payload === 'asc' ? 

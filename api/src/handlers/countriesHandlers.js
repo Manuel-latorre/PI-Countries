@@ -1,4 +1,4 @@
-const { getCountryById, getCountriesByName, getAllCountries } = require('../controllers/countriesControllers')
+const { getCountryById, getCountriesByName } = require('../controllers/countriesControllers')
 const { Country } = require("../db")
 
 

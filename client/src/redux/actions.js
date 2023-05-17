@@ -16,8 +16,6 @@ export const prevPage = () => {
     }
 }
 
-
-
 export const getCountries = () => async (dispatch) => {
     try {
         let json = await axios.get("http://localhost:3001/countries");
