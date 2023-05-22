@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { postActivity, getCountries, getActivities } from "../../redux/actions";
+import { postActivity, getCountries } from "../../redux/actions";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import validation from "./validation"
 import styles from "./Form.module.css"
 
@@ -10,15 +10,27 @@ import styles from "./Form.module.css"
 const Form = () => {
 
     const dispatch = useDispatch();
-    
+    const countries = useSelector(state => state.countries)
+
     const [errors, setErrors] = useState({})
+
+    let countriesList = countries.map(country => {
+        return({
+            name:country.name,
+            flag: country.flags
+        })
+    });
+
+    const [selected, setSelected] = useState("");
+    
 
     const [form, setForm] = useState({
         name: "",
         difficulty: "",
         duration: "",
         season: "",
-        countries:""
+        countries:[],
+        
     })
     
 
@@ -33,14 +45,32 @@ const Form = () => {
         }))
     }
 
-
-    const handleCheckSeasons = (event) => {
-        if(event.target.checked) 
-        setForm({
-            ...form, 
-            season: event.target.value})
+    const handleCountries = (event) => {
+        if(event.target.value !== 'Select Country' && !form.countries.includes(event.target.value)){
+            setForm({
+                ...form,
+                countries:[...form.countries, event.target.value]
+            })
+            setErrors(validation({
+                ...form, 
+                countries: [...form.countries, event.target.value]
+            }))
+        }
     }
 
+
+    const handleSeasons = (event) => {
+        if(event.target.value !== 'Select season' && !form.season.includes(event.target.value)){
+            setForm({
+                ...form,
+                season: event.target.value
+            })
+            setErrors(validation({
+                ...form, 
+                season: event.target.value
+            }))
+        }
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -52,75 +82,77 @@ const Form = () => {
             difficulty: "",
             duration: "",
             season: "",
-            countries: "",
+            countries: [],
         })
-
     }
     
     
     
     useEffect(() => {
         dispatch(getCountries())
-        dispatch(getActivities());
     }, [dispatch])
 
-    
-    
-    console.log(form);
+
     return(
         <form className={styles.form} onSubmit={handleSubmit}>
-            
-            <h1>Crea tu actividad turistica</h1>
 
+            <h1>Create your tourist activity</h1>
+            
             <div className={styles.inputsContainer}>
                 <div>
-                    <label>Name: </label>
+                    <label>Name </label>
                 </div>
                 <input className={styles.inputs} type="text" onChange={handleChange} value={form.name} name="name" placeholder="Activity name"/>
-                {errors.name && <p>{errors.name}</p>}
+                {errors.name && <p className={styles.errors}>{errors.name}</p>}
             </div>
 
             <div className={styles.inputsContainer}>
                 <div>
-                    <label>Difficulty: </label>
+                    <label>Difficulty </label>
                 </div>
                 <input className={styles.inputs} type="text" onChange={handleChange} value={form.difficulty} name="difficulty" placeholder="From 1 to 5"/>
-                {errors.difficulty && <p>{errors.difficulty}</p>}
+                {errors.difficulty && <p className={styles.errors}>{errors.difficulty}</p>}
             </div>
 
             <div className={styles.inputsContainer}>
                 <div>
-                    <label>Duration: </label>
+                    <label>Duration </label>
                 </div>
                 <input className={styles.inputs} type="text" onChange={handleChange} value={form.duration} name="duration" placeholder="Enter the duration in hours (1hs)"/>
-                {errors.duration && <p>{errors.duration}</p>}
+                {errors.duration && <p className={styles.errors}>{errors.duration}</p>}
             </div>
-
-            <div className={styles.inputsContainer}>
-                <div>
-                    <label>Country: </label>
-                </div>
-                <input className={styles.inputs} type="text" onChange={handleChange} value={form.countries} name="countries" placeholder="Enter the country"/>
-                {errors.countries && <p>{errors.countries}</p>}
-            </div>
-            
 
             <div className={styles.checkDiv}>
-                <div>
-                    <label>Seasons</label >
-                </div>
-                <label><input className={styles.checkbox} type="checkbox" onChange={handleCheckSeasons} value= "summer" name="summer"/>Summer</label>
-                <label><input className={styles.checkbox} type="checkbox" onChange={handleCheckSeasons} value= "fall" name="fall"/>Fall</label>
-                <label><input className={styles.checkbox} type="checkbox" onChange={handleCheckSeasons} value= "winter" name="winter"/>Winter</label>
-                <label><input className={styles.checkbox} type="checkbox" onChange={handleCheckSeasons} value= "spring" name="spring"/>Spring</label>
+                    <select className={styles.selectCountry} onChange={handleSeasons}>
+                        <option className={styles.seasons}>Select season</option>
+                        <option value="summer">Summer</option>
+                        <option value="autumn">Autumn</option>
+                        <option value="winter">Winter</option>
+                        <option value="spring">Spring</option>
+                    </select>
+                    {errors.season && <p className={styles.errors}>{errors.season}</p>}
             </div>
+
+            <select className={styles.selectCountry} value={selected} onChange={event => [handleCountries(event), setSelected(event)]}>
+                <option>Select Country</option>
+                {countriesList?.map(country => {
+                    return(
+                        <option key={country.name}>
+                            {country.name}
+                        </option>
+                    )
+                })}
+            </select>
+                {errors.countries && <p className={styles.errors}>{errors.countries}</p>}
+
+            <ul><li>{form.countries.map(country=> country + ' ,')}</li></ul>
 
             <button className={styles.button} disabled={ errors.name || 
                 errors.difficulty || 
                 errors.duration || 
                 errors.countries ||
-            !form.season} 
-            type="submit">Crear actividad</button>
+                errors.season} 
+            type="submit">Create Activity</button>
 
         </form>
 )

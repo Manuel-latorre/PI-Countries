@@ -1,0 +1,21 @@
+.divActivities{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding:30px;
+    text-align: center;
+}
+
+.titleAct{
+    font-size:40px;
+    color:white;
+    text-align: center;
+}
+
+.divTitle{
+    padding:40px;
+}
+
+.actContainer{
+    background-color:#09213A;
+}

@@ -34,23 +34,24 @@ const validation = (form) => {
         errors.duration = "";
     }
 
-    //* validation countries
+    //* validation season 
 
-    
-    if(!/^[ A-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(form.countries)){
-        errors.countries  = "Only letters and spaces are allowed";
+    if(!form.season){
+        errors.season = "Empty field, please select minimum one";
     }
-
-    if(!/^[^A-Z]*[A-Z][^A-Z]*$/.test(form.countries)){
-        errors.countries = "Invalid country, the first letter must be uppercase Example: Argentina, Brazil";
+    else{
+        errors.season = "";
+    }
+    
+    if(!form.countries.length){
+        errors.countries = "Empty field, please select minimum one";
     }
 
     else{
-        errors.countries  = "";
+        errors.countries = "";
     }
-
     
-
+    
     return errors;
 }
 

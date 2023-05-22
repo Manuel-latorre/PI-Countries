@@ -1,20 +1,8 @@
-import { GET_COUNTRIES, GET_COUNTRY, NEXT_PAGE, PREV_PAGE, GET_COUNTRIES_BY_NAME, FILTER_BY_CONTINENT,
-        ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION } from "./actions-types";
+import { GET_COUNTRIES, GET_COUNTRY, GET_COUNTRIES_BY_NAME, FILTER_BY_CONTINENT,
+        ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION, NEXT_PAGE, PREV_PAGE } from "./actions-types";
+        
 import axios from "axios";
 
-
-
-export const nextPage = () => {
-    return {
-        type: NEXT_PAGE,
-    }
-}
-
-export const prevPage = () => {
-    return {
-        type: PREV_PAGE,
-    }
-}
 
 export const getCountries = () => async (dispatch) => {
     try {
@@ -73,6 +61,19 @@ export const orderByName = (payload) => {
 
 export const orderByPopulation = (payload) => {
     return {type: ORDER_BY_POPULATION, payload}
+}
+
+
+export const nextPage = () => {
+    return {
+        type: NEXT_PAGE,
+    }
+}
+
+export const prevPage = () => {
+    return {
+        type: PREV_PAGE,
+    }
 }
 
 

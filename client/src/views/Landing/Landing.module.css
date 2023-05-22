@@ -1,32 +1,66 @@
 .landing{
-    background-image:url('./assets/fondoLanding3.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-image:url('./assets/fondo.png');
+    background-size: contain;
+    background-repeat:round;
     background-blend-mode: darken;
-    background-color: rgba(0, 0, 0, 0.158);
-    height:100%;
+    background-color: rgba(0, 0, 0, 0.247);
+    height:100vh;
     width:100vw;
     position: absolute;
+}
+
+.container{
     display:flex;
-    justify-content:end;
-    align-items:center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 250px;
+    text-align: center;
+}
+
+.welcome{
+    font-size:35px;
+    color: white;
+    margin-left:20px;
+    margin-right:20px
 }
 
 .button{
     padding:10px;
-    margin-top:50px;
-    margin-right:140px;
     background-color:white;
     text-decoration: none;
     font-size:30px;
     font-family: 'Tilt Warp', cursive;
     color:#0C3968;
     border-radius:15px;
-    position: absolute;
+    margin-top: 40px;
+
 }
 
 .button:hover{
     color:white;
     background-color:grey;
+}
+
+@media(max-width:666px){
+    .landing{
+        background-repeat:no-repeat;
+        background-size: cover;
+        background-color: rgba(0, 0, 0, 0.466);
+    }
+
+    .container{
+        margin-top:150px;
+    }
+}
+
+@media(max-width: 450px){
+    .welcome{
+        font-size:25px;
+    }
+
+    .button{
+        padding:6px;
+        font-size:20px;
+    }
+
 }

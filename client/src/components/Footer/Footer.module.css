@@ -1,0 +1,44 @@
+.footer{
+    background-image:url('./assets/fondoFooter3.png');
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.438);
+    height:200px;
+    display:flex;
+    justify-content:center;
+}
+
+
+.buttons{
+    color:white;
+    text-decoration:none;
+    margin:60px;
+    font-size:30px;
+}
+
+.buttons:hover{
+    color:#0C3968;
+}
+
+@media(max-width: 920px){
+    .buttons{
+        font-size:20px;
+        margin:40px;
+        margin-top:50px;
+    }
+}
+
+@media(max-width: 609px){
+    .buttons{
+        font-size:15px;
+        margin:20px;
+        margin-top:60px;
+    }
+}
+
+@media(max-width: 377px){
+    .buttons{
+        font-size:12px;
+        margin:15px;
+        margin-top:50px;
+    }
+}

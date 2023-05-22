@@ -1,0 +1,13 @@
+
+.munditoGif{
+    width:90px;
+}
+
+.loading{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.61);
+    color:rgba(0, 0, 0, 0);
+    height:100vh;
+}

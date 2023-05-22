@@ -2,10 +2,10 @@ export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_COUNTRY = "GET_COUNTRY";
 export const POST_ACTIVITY = "POST_ACTIVITY";
 export const GET_ACTIVITIES = "GET_ACTIVITIES"
-export const NEXT_PAGE = "NEXT_PAGE";
-export const PREV_PAGE = "PREV_PAGE";
 export const GET_COUNTRIES_BY_NAME = "GET_COUNTRIES_BY_NAME"
 export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION"
+export const NEXT_PAGE = "NEXT_PAGE";
+export const PREV_PAGE = "PREV_PAGE";
 

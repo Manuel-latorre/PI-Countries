@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { nextPage, prevPage } from "../../redux/actions";
-import derecha from "../assets/images/derecha.png"
-import izquierda from "../assets/images/izquierda.png"
+import derecha from "./assets/derecha.png"
+import izquierda from "./assets/izquierda.png"
 import styles from "./Paginate.module.css"
 
 const Paginate = ({cantPages}) => {
@@ -23,7 +23,7 @@ const Paginate = ({cantPages}) => {
                 numPage > 1 ? (
                     <div className={styles.numbersPage}>
                         <img className={styles.btnPages} src={izquierda} onClick={prev}/>
-                        <p>{numPage -1}</p>
+                        <p className={styles.numberP}>{numPage -1}</p>
                     </div>
                 ) : null
             }
@@ -33,7 +33,7 @@ const Paginate = ({cantPages}) => {
             {
                 numPage < cantPages ? (
                     <div className={styles.numbersPage}>
-                        <p>{numPage +1}</p>
+                        <p className={styles.numberP}>{numPage +1}</p>
                     <img className={styles.btnPages} src={derecha} onClick={next}/>             
                     </div>
 

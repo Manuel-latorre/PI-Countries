@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getCountry } from "../../redux/actions";
 import Activity from "./Activity/Activity";
+import styles from "./Detail.module.css"
 
 const Detail = () => {
 
@@ -16,15 +17,21 @@ const Detail = () => {
     }, [dispatch, id])
 
     return(
+    <div>
         <div>
-            <h1>Esta es la view de DETAIL {id}</h1>
-            <p>{country.name}</p>
-            <img src={country.flag}/>
-            <p>Capital: {country.capital}</p>
-            <p>Continente: {country.continent}</p>
-            <p>Subregion: {country.subregion}</p>
-            <p>Area: {country.area}</p>
-            <p>Poblacion: {country.population}</p>
+            <h2>{id}</h2>
+            <p className={styles.nameCountry}>{country.name}</p>
+        </div>
+
+        <div className={styles.detail}>
+            <div className={styles.detailCountry}>
+            <img className={styles.flag} src={country.flag}/>
+            <p className={styles.dataCountry}>Capital: {country.capital}</p>
+            <p className={styles.dataCountry}>Continent: {country.continent}</p>
+            <p className={styles.dataCountry}>Subregion: {country.subregion}</p>
+            <p className={styles.dataCountry}>Area: {country.area}</p>
+            <p className={styles.dataCountry}>Population: {country.population}</p>
+            </div>
             {
                 country.Activities?.map((act) => {
                     return(
@@ -39,6 +46,7 @@ const Detail = () => {
                 })
             }
         </div>
+    </div>
 
     )
 }

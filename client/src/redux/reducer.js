@@ -1,5 +1,5 @@
-import { GET_COUNTRIES, GET_COUNTRY, NEXT_PAGE, PREV_PAGE, GET_COUNTRIES_BY_NAME, FILTER_BY_CONTINENT,
-        ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION } from "./actions-types";
+import { GET_COUNTRIES, GET_COUNTRY, GET_COUNTRIES_BY_NAME, FILTER_BY_CONTINENT,
+        ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION, NEXT_PAGE, PREV_PAGE} from "./actions-types";
 
 const initialState = {
     countries: [],
@@ -30,17 +30,6 @@ const rootReducer = (state = initialState, action) => {
 
         case POST_ACTIVITY:
             return {...state}
-
-        case NEXT_PAGE:
-            return {...state, 
-            numPage: state.numPage + 1
-        }
-
-        case PREV_PAGE:
-            return {...state, 
-            numPage: state.numPage - 1
-        }
-
 
         case FILTER_BY_CONTINENT:
             const allCountries = state.allCountries;
@@ -76,6 +65,16 @@ const rootReducer = (state = initialState, action) => {
         return{
             ...state,
             countries: population
+        }
+
+        case NEXT_PAGE:
+            return {...state, 
+            numPage: state.numPage + 1
+        }
+
+        case PREV_PAGE:
+            return {...state, 
+            numPage: state.numPage - 1
         }
 
         default:

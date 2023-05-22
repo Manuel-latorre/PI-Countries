@@ -1,0 +1,32 @@
+.searchBar{
+    display: flex;
+    justify-content: center;
+}
+
+
+.searchBar input{
+    margin-top:40px;
+    width:200px;
+    padding:6px;
+    border: solid 2px grey;
+    background-color:white;
+}
+
+.searchBar input::placeholder{
+    color:#0C3968;
+}
+
+
+
+.button{
+    margin-top:40px;
+    margin-left:5px;
+    border: solid 3px white;
+    background-color: white;
+}
+
+.icon{
+    width:25px;
+    background-color:white;
+    cursor:pointer;
+}

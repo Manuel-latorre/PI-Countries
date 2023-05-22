@@ -1,0 +1,25 @@
+.filters{
+    display:flex;
+    justify-content: center;
+    margin-top:40px;
+    margin-bottom:20px;
+    
+}
+
+.divsFilters{
+    margin:20px;
+    cursor:pointer;
+    color:white;
+    background-color: #042344;
+    border: solid 3px white;
+    padding:5px;
+}
+
+
+@media(max-width: 500px){
+    .divsFilters{
+        padding:2px;
+        margin:10px;
+        width:100px;
+    }
+}

@@ -1,22 +1,35 @@
 .paginate{
     display:flex;
     justify-content: center;
+    padding-bottom:50px;
 }
 
 .btnPages{
     width:50px;
     height:50px;
     cursor:pointer;
-    
+    margin-left:20px;
+    margin-right:20px;
 }
 
 .numbersPage{
     display:flex;
-    margin:20px;
     margin-top:10px;
+}
+
+.numberP{
+    margin-top: 20px;
+    font-size:20px;
+    color:white;
     
 }
 
 .pagActive{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:#0C3968;
+    background-color:white;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    border-radius:100px;
 }

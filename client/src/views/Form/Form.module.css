@@ -1,17 +1,24 @@
-
-
+body{
+    background-image:url('./assets/fondoForm.png');
+    background-repeat: no-repeat;
+}
 .form{
-    background-color: aqua;
+    color:white;
+    border-radius:20px;
     text-align: center;
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
     padding:30px;
+    margin-top:60px;
+    margin-left:60%;
+    background-color:#0C3968;
+    width:350px;
+    height:700px;
+    border: solid 3px rgb(19, 104, 214);
+    margin-bottom:100px;
 }
 
-
-
+h1{
+    font-size:24px;
+}
 .inputsContainer{
     margin:30px;
 }
@@ -19,17 +26,74 @@
 .button{
     padding:10px;
     border-radius:10px;
-    margin-top: 30px;
+    margin-top: 15px;
+    background-color:white;
+    color:#042344;
+    cursor:pointer;
+    border:solid 2px #042344;
 }
 
 .checkbox{
-    margin:5px;
+    margin:10px;
+}
+
+.check{
+    margin:2px;
+}
+
+.seasons{
+    margin:20px;
 }
 
 .inputs{
     padding:6px;
     border-radius:10px;
-    border:solid 2px black;
+    margin-top:10px;
     width:200px;
 }
 
+.errors{
+    color:red;
+    font-size:12px;
+    margin-top:10px;
+}
+
+.selectCountry{
+    margin-top:30px;
+    color:white;
+    background-color: #042344;
+    border: solid 3px white;
+    padding:5px;
+    cursor: pointer;
+}
+
+li::marker{
+    color:#0C3968;
+}
+
+@media(max-width:1120px){
+    .form{
+        margin:auto;
+        width:300px;
+        margin-top: 50px;
+        padding:15px;
+        margin-bottom:100px;
+    }
+    
+    h1{
+        font-size:18px;
+    }
+
+    
+    .button{
+        padding:6px;
+    }
+
+    .selectCountry{
+        width:150px;
+    }
+    .checkbox{
+        margin:5px;
+    }
+    
+}

@@ -3,6 +3,7 @@ import Paginate from "../Paginate/Paginate"
 import styles from "./CardsContainer.module.css"
 import { useSelector } from "react-redux"
 
+
 const CardsContainer = () => {
     const countries = useSelector(state => state.countries)
     const {numPage} = useSelector((state) => state)
@@ -14,28 +15,25 @@ const CardsContainer = () => {
 
     let viewCountries = countries?.slice(desde, hasta)    
 
+   
+
     return (
         <div >
-            <Paginate cantPages={cantPages}/>
             <div className={styles.cardsContainer}>
-                {viewCountries.map(country => {
-                    return <Card 
+                    {viewCountries.map(country => {
+                        return <Card 
                         key={country.id}
                         id={country.id}
                         name={country.name}
                         flag={country.flag}
                         continent={country.continent}
-                        capital={country.capital}
-                        subregion={country.subregion}
-                        area={country.area}
-                        population={country.population}
                         />
                     })
                 }
-            </div>
+                </div>
                 <Paginate cantPages={cantPages}/>
-        </div>
-    )
-}
-
+                </div>
+                )
+            }
+            
 export default CardsContainer;
