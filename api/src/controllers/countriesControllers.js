@@ -1,7 +1,7 @@
 const axios = require('axios')
 const { Country, Activity } = require('../db');
 const { Op } = require('sequelize');
-const data = require('../../data');
+
 
 
 const getCountryById = async (id) => {
@@ -14,10 +14,8 @@ const getCountryById = async (id) => {
 }
 
 const getAllCountries = async () => {
-    //const response = await axios.get('https://restcountries.com/v3/all');
-        //const countries = response.data;
-        
-        const countries = data;
+    const response = await axios.get('https://restcountries.com/v3/all');
+        const countries = response.data;
 
         const countriesList = countries.map(country => {
             return {
