@@ -1,33 +1,25 @@
 import { useDispatch } from "react-redux";
-import { filterByContinent, orderByPopulation } from "../../redux/actions";
-import { orderByName } from "../../redux/actions";
+import { orderByName, filterByContinent, orderByPopulation } from "../../redux/actions";
 import styles from "./Filter.module.css"
-import { useState } from "react";
 
 
 const Filters = () => {
 
-    const dispatch = useDispatch();
-
-    const [currentPage, setCurrentPage] = useState(1)
-
+    const dispatch = useDispatch()
 
     const handlerFilterByContinent = (event) => {
         const continent = event.target.value;
         dispatch(filterByContinent(continent))
-        setCurrentPage(1)
     }
 
     const handlerOrderByName = (event) => {
         const name = event.target.value
         dispatch(orderByName(name))
-        setCurrentPage(1)
     }
 
     const handlerByPopulation = (event) => {
         const mayor = event.target.value;
         dispatch(orderByPopulation(mayor))
-        setCurrentPage(1)
     }
 
     return(
@@ -53,6 +45,7 @@ const Filters = () => {
                 <option value="Mayor">Higher population</option>
                 <option value="Menor">Lower population</option>
             </select>
+
         </div>
     )
 }

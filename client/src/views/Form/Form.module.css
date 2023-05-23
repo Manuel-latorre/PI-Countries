@@ -1,17 +1,15 @@
 body{
     background-image:url('./assets/fondoForm.png');
-    background-repeat: no-repeat;
 }
 .form{
     color:white;
     border-radius:20px;
     text-align: center;
-    padding:30px;
     margin-top:60px;
     margin-left:60%;
     background-color:#0C3968;
     width:350px;
-    height:700px;
+    padding:20px;
     border: solid 3px rgb(19, 104, 214);
     margin-bottom:100px;
 }

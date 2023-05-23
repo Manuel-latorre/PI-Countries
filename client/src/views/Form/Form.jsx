@@ -13,6 +13,7 @@ const Form = () => {
     const countries = useSelector(state => state.countries)
 
     const [errors, setErrors] = useState({})
+    const [selected, setSelected] = useState("");
 
     let countriesList = countries.map(country => {
         return({
@@ -21,7 +22,6 @@ const Form = () => {
         })
     });
 
-    const [selected, setSelected] = useState("");
     
 
     const [form, setForm] = useState({

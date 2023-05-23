@@ -1,9 +1,12 @@
-body{
-    background-color: #09213a;
-}
+
 h2{
     margin:20px;
     color: cadetblue;
+}
+
+.divDetail{
+    background-color: #09213a;
+    padding:10px;
 }
 
 .nameCountry{
@@ -36,4 +39,14 @@ h2{
 
 .dataCountry{
     margin:20px;
+}
+
+@media(max-width:500px){
+    .detailCountry{
+        width:250px;
+    }
+
+    .flag{
+        width:200px;
+    }
 }

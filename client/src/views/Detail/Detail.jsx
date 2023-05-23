@@ -17,7 +17,7 @@ const Detail = () => {
     }, [dispatch, id])
 
     return(
-    <div>
+    <div className={styles.divDetail}>
         <div>
             <h2>{id}</h2>
             <p className={styles.nameCountry}>{country.name}</p>

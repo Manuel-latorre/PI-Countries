@@ -15,7 +15,6 @@ const CardsContainer = () => {
 
     let viewCountries = countries?.slice(desde, hasta)    
 
-   
 
     return (
         <div >
@@ -27,6 +26,7 @@ const CardsContainer = () => {
                         name={country.name}
                         flag={country.flag}
                         continent={country.continent}
+                        Activities={country.Activities}
                         />
                     })
                 }

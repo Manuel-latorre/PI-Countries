@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_COUNTRY, GET_COUNTRIES_BY_NAME, FILTER_BY_CONTINENT,
+import { GET_COUNTRIES, GET_COUNTRY, GET_COUNTRIES_BY_NAME, FILTER_BY_CONTINENT, FILTER_BY_ACTIVITY,
         ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION, NEXT_PAGE, PREV_PAGE } from "./actions-types";
         
 import axios from "axios";
@@ -53,6 +53,10 @@ export const postActivity = (payload) => {
 
 export const filterByContinent = (payload) => {
     return {type: FILTER_BY_CONTINENT, payload}
+}
+
+export const filterByActivity = (payload) => {
+    return {type: FILTER_BY_ACTIVITY, payload}
 }
 
 export const orderByName = (payload) => {

@@ -43,17 +43,18 @@
 
 @media(max-width:666px){
     .landing{
-        background-repeat:no-repeat;
-        background-size: cover;
-        background-color: rgba(0, 0, 0, 0.466);
+        background-image:url('./assets/fondoResp.png');
     }
 
     .container{
-        margin-top:150px;
+        margin-top:220px;
     }
 }
 
 @media(max-width: 450px){
+    .landing{
+        background-image:url('./assets/fondoResp1.png');
+    }
     .welcome{
         font-size:25px;
     }
