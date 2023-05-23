@@ -1,7 +1,7 @@
 import styles from "./Card.module.css"
 import{ Link } from "react-router-dom";
 
-const Card = ({id, name, flag, continent, Activities}) => {
+const Card = ({id, name, flag, continent }) => {
     return (
         <div key={id} className={styles.card}>
             <Link to={`/countries/${id}`}>
@@ -9,13 +9,6 @@ const Card = ({id, name, flag, continent, Activities}) => {
             </Link>
                 <h1>{name}</h1>
                 <p>{continent}</p>
-                <ul>
-                    {Activities?.map(activity => {
-                        return(
-                            <li key={activity.id}>Activities: {activity.name}</li>
-                        )
-                    })}
-                </ul>
         </div>
     )
 }

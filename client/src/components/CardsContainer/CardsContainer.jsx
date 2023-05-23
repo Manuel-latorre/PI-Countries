@@ -26,7 +26,6 @@ const CardsContainer = () => {
                         name={country.name}
                         flag={country.flag}
                         continent={country.continent}
-                        Activities={country.Activities}
                         />
                     })
                 }

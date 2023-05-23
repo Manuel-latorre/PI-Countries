@@ -5,7 +5,7 @@ import Form from './views/Form/Form';
 import Detail from './views/Detail/Detail';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
-import Activities from './components/Activities/Activities'
+import ActivitiesContainer from './components/Activities/ActivitiesContainer'
 import { Route, useLocation } from "react-router-dom";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
 
         <Route exact path="/home" render={() => <Home />} />
 
-        <Route exact path="/activities" render={() => <Activities />} />
+        <Route exact path="/activities" render={() => <ActivitiesContainer />} />
 
         <Route exact path="/create" render={() => <Form />} />
 

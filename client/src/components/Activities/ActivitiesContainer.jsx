@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getActivities } from "../../redux/actions";
-import ActivityContainer from "./ActivityContainer/ActivityContainer";
-import styles from "./Activities.module.css"
+import Activity from "./Activities/Activity";
+import styles from "./ActivitiesContainer.module.css"
 
 const Activities = () => {
 
@@ -27,7 +27,7 @@ const Activities = () => {
                     {
                         allActivities.map((act) => {
                             return(
-                                <ActivityContainer
+                                <Activity
                                 key={act.id}
                                 name={act.name}
                                 difficulty={act.difficulty}
