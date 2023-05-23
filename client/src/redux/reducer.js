@@ -1,11 +1,12 @@
 import { GET_COUNTRIES, GET_COUNTRY, GET_COUNTRIES_BY_NAME, FILTER_BY_CONTINENT,
-        ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION, NEXT_PAGE, PREV_PAGE} from "./actions-types";
+        ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION, NEXT_PAGE, PREV_PAGE, FILTER_BY_ACTIVITY} from "./actions-types";
 
 const initialState = {
     countries: [],
     allCountries:[],
     country: [],
     activities: [],
+    allActivities: [],
     numPage: 1,
 }
 
@@ -35,12 +36,12 @@ const rootReducer = (state = initialState, action) => {
             const allCountries = state.allCountries;
             const filterContinent = action.payload === 'All' ? allCountries : allCountries.filter(element => element.continent === action.payload)
             return {...state, countries: filterContinent}
-
-
-        case ORDER_BY_NAME: 
-        let sort = action.payload === 'asc' ? 
-        state.countries.sort(function (a, b){
-            if(a.name > b.name) return 1;
+        
+            
+            case ORDER_BY_NAME: 
+            let sort = action.payload === 'asc' ? 
+            state.countries.sort(function (a, b){
+                if(a.name > b.name) return 1;
             if(b.name > a.name) return -1;
             return 0;
         }) :
@@ -77,11 +78,41 @@ const rootReducer = (state = initialState, action) => {
             numPage: state.numPage - 1
         }
 
+        case FILTER_BY_ACTIVITY:
+        const allCount = state.allCountries
+        const allAct = []
+        const countryActivity = []
+        const activity = action.payload
+        const lastArray = []
+        const activities = state.activities
+        
+        activities.map((act) => {
+            if(act.name === activity){
+                allAct.push(act.Countries)
+            }
+        })
+        allAct.map((element) => {
+            countryActivity.push(element[0].name);
+        })
+
+        for(let name of countryActivity){
+            allCount.map((element) => {
+                if(name === element.name)
+                    lastArray.push(element)
+                }
+            )
+        };
+    
+        return{
+            ...state,
+                countries: lastArray
+            }
+
         default:
             return { ...state};
+        }
     }
-}
 
 
-
+    
 export default rootReducer;

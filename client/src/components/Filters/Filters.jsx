@@ -1,11 +1,22 @@
-import { useDispatch } from "react-redux";
-import { orderByName, filterByContinent, orderByPopulation } from "../../redux/actions";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { orderByName, filterByContinent, orderByPopulation, filterByActivity, getActivities, getCountries } from "../../redux/actions";
 import styles from "./Filter.module.css"
 
 
 const Filters = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const state = useSelector(state => state)
+
+    useEffect(() => {
+        dispatch(getActivities())
+        dispatch(getCountries(state.allCountries))
+    }, [dispatch])
+
+    const handleActivity = (event) => {
+        dispatch(filterByActivity(event.target.value))
+    }
 
     const handlerFilterByContinent = (event) => {
         const continent = event.target.value;
@@ -45,7 +56,14 @@ const Filters = () => {
                 <option value="Mayor">Higher population</option>
                 <option value="Menor">Lower population</option>
             </select>
-
+            <div>
+                <select className={styles.divsFilters} name='activities' onChange={handleActivity}>
+                    <option>Activities</option>
+                        {state.activities?.map((e) => {
+                    return <option key={e.id} value={e.name}>{e.name}</option>
+                    })}
+                </select>
+            </div>
         </div>
     )
 }
