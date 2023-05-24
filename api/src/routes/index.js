@@ -10,7 +10,7 @@ const mainRouter = Router();
 
 
 //configuro los routers
-mainRouter.use('/countries', countriesRouter);
+mainRouter.use('/countries', countriesRouter);   
 mainRouter.use('/activities', activitiesRouter);
 
 

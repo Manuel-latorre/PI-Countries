@@ -6,7 +6,6 @@ const initialState = {
     allCountries:[],
     country: [],
     activities: [],
-    allActivities: [],
     numPage: 1,
 }
 
@@ -17,7 +16,8 @@ const rootReducer = (state = initialState, action) => {
         case GET_COUNTRIES: 
         return {...state, 
             countries: action.payload,
-            allCountries: action.payload
+            allCountries: action.payload,
+            filteredCountries: []
         }
 
         case GET_COUNTRY:
@@ -35,7 +35,12 @@ const rootReducer = (state = initialState, action) => {
         case FILTER_BY_CONTINENT:
             const allCountries = state.allCountries;
             const filterContinent = action.payload === 'All' ? allCountries : allCountries.filter(element => element.continent === action.payload)
-            return {...state, countries: filterContinent}
+            
+            return {
+                ...state, 
+                countries: filterContinent,
+                numPage: 1
+            }
         
             
             case ORDER_BY_NAME: 
@@ -52,7 +57,8 @@ const rootReducer = (state = initialState, action) => {
         })
         return{
             ...state,
-            countries: sort
+            countries: sort,
+            numPage: 1
         }
 
         case ORDER_BY_POPULATION: 
@@ -65,7 +71,8 @@ const rootReducer = (state = initialState, action) => {
         })
         return{
             ...state,
-            countries: population
+            countries: population,
+            numPage: 1
         }
 
         case NEXT_PAGE:
@@ -77,7 +84,7 @@ const rootReducer = (state = initialState, action) => {
             return {...state, 
             numPage: state.numPage - 1
         }
-
+    
         case FILTER_BY_ACTIVITY:
         const allCount = state.allCountries
         const allAct = []
@@ -86,26 +93,25 @@ const rootReducer = (state = initialState, action) => {
         const lastArray = []
         const activities = state.activities
         
-        activities.map((act) => {
-            if(act.name === activity){
+        activities.map((act) => {      //hago un map de mi estado activities, si el nombre coincide con el payload,
+            if(act.name === activity){ // lo agrego a mi array allAct con el pais asociado a esa actividad
                 allAct.push(act.Countries)
             }
         })
-        allAct.map((element) => {
-            countryActivity.push(element[0].name);
+        allAct.map((element) => {                  // luego mapeo mi array donde se encuentra el pais con la actividad
+            countryActivity.push(element[0].name); // y agrego el nombre a un array countryActvity
         })
-
-        for(let name of countryActivity){
-            allCount.map((element) => {
+        for(let name of countryActivity){  // hago la comparacion,
+            allCount.map((element) => {    // si nombre coincide con el nombre del pais, lo agrego al array que hace el filtrado 
                 if(name === element.name)
                     lastArray.push(element)
                 }
             )
-        };
-    
+        }
         return{
             ...state,
-                countries: lastArray
+                countries: lastArray,
+                numPage: 1
             }
 
         default:

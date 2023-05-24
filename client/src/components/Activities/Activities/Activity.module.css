@@ -1,19 +1,19 @@
 .activity{
     margin-top:40px;
-    background-color:white;
+    background-color:#0b498b;
     padding:5px;
-    border-radius:20px;
-    border:solid 2px #071f3a;
+    border-radius:5px;
     width:200px;
     margin:50px;
+    border: solid 2px white;
 }
 
 
 .dataActivity{
     margin:20px;
-    color:#071f3a;
+    color:white;
 }
 
 .activityP{
-    color:rgb(19, 104, 214);
+    color:#02172c;
 }

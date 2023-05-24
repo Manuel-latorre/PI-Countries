@@ -5,7 +5,7 @@ const { Country } = require("../db")
 const getCountries = async (req, res) => {
     const { name } = req.query;
     try {
-        const results = name ? await getCountriesByName(name) : await Country.findAll();
+        const results = name ? await getCountriesByName(name) : await Country.findAll(); 
         res.status(200).json(results)
     } catch (error) {
         res.status(400).json({error: error.message})

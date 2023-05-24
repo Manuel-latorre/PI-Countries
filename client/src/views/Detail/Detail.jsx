@@ -23,7 +23,7 @@ const Detail = () => {
             <p className={styles.nameCountry}>{country.name}</p>
         </div>
 
-        <div className={styles.detail}>
+        <div key={country.id} className={styles.detail}>
             <div className={styles.detailCountry}>
             <img className={styles.flag} src={country.flag}/>
             <p className={styles.dataCountry}>Capital: {country.capital}</p>

@@ -50,7 +50,8 @@ const getCountriesByName = async (name) => {
         return country.name.common === name;
     })
 
-    return [...filtered, ...countriesList];
+    return [...filtered, ...countriesList];  //retorno todo lo que hay dentro de filtered
+                                             //y todo lo que hay dentro de countriesList en nuevo array
 }
 
 

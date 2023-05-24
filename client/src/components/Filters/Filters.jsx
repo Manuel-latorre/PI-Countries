@@ -7,6 +7,7 @@ import styles from "./Filter.module.css"
 const Filters = () => {
 
     const dispatch = useDispatch();
+    
     const state = useSelector(state => state)
 
     useEffect(() => {
@@ -15,7 +16,8 @@ const Filters = () => {
     }, [dispatch])
 
     const handleActivity = (event) => {
-        dispatch(filterByActivity(event.target.value))
+        const activity = event.target.value
+        dispatch(filterByActivity(activity))
     }
 
     const handlerFilterByContinent = (event) => {
@@ -57,7 +59,7 @@ const Filters = () => {
                 <option value="Menor">Lower population</option>
             </select>
             <div>
-                <select className={styles.divsFilters} name='activities' onChange={handleActivity}>
+                <select className={styles.divsFilters} name='activity' onChange={handleActivity}>
                     <option>Activities</option>
                         {state.activities?.map((e) => {
                     return <option key={e.id} value={e.name}>{e.name}</option>
