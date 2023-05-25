@@ -18,9 +18,10 @@ export const getCountriesByName = (name) => {
     return async function (dispatch){
         try {
             let json = await axios.get(`/countries?name=${name}`)
-            return dispatch({type: GET_COUNTRIES_BY_NAME, payload: json.data})
+            dispatch({type: GET_COUNTRIES_BY_NAME, payload: json.data})
         } catch (error) {
-            console.log(error);
+            if(error.response)
+            alert('Country not found')
         }
     }
 }

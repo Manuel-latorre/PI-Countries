@@ -11,17 +11,19 @@ const SearchBar = () => {
 
     const handlerChange = (event) => {
         setName(event.target.value);
-        console.log(event.target.value);
     }
     
     const submitHandler = (event) => {
         event.preventDefault();
+        if(!name) return alert('Enter a country please')
+        if(!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(name)) return alert('Only letters are allowed')
         dispatch(getCountriesByName(name))
+        setName('')
     }
 
     return(
             <div className={styles.searchBar}>
-                <input type="text" placeholder="Search..." onChange={handlerChange}/>
+                <input type="text" value={name} placeholder="Search..." onChange={handlerChange}/>
                 <button className={styles.button} type="submit" onClick={submitHandler}><img className={styles.icon} src={iconSearch} alt="" /></button>
             </div>
     )

@@ -8,11 +8,12 @@ const Filters = () => {
 
     const dispatch = useDispatch();
     
-    const state = useSelector(state => state)
+    const countries = useSelector(state => state.allCountries)
+    const activities = useSelector(state => state.activities)
 
     useEffect(() => {
         dispatch(getActivities())
-        dispatch(getCountries(state.allCountries))
+        dispatch(getCountries(countries))
     }, [dispatch])
 
     const handleActivity = (event) => {
@@ -59,10 +60,12 @@ const Filters = () => {
                 <option value="Menor">Lower population</option>
             </select>
             <div>
-                <select className={styles.divsFilters} name='activity' onChange={handleActivity}>
-                    <option>Activities</option>
-                        {state.activities?.map((e) => {
-                    return <option key={e.id} value={e.name}>{e.name}</option>
+                <select className={styles.divsFilters} onChange={handleActivity}>
+                    <option value='All'>Activities</option>
+                        {activities?.map((e) => {console.log(e.name);
+                    return(
+                        <option key={e.id} value={e.name}>{e.name}</option>
+                    ) 
                     })}
                 </select>
             </div>

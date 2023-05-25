@@ -74,9 +74,9 @@ const Form = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if(form.name === '' || form.duration === '' || form.difficulty === '' || form.season === '' || form.countries === '' || form.season === '') return alert('Incomplete fields, please complete all fields')
+        if(form.name === '' && form.duration === '' && form.difficulty === ''  && form.season === '' && form.season === '' && form.countries === '') return alert('Incomplete fields, please complete all fields')
         dispatch(postActivity(form))
-        alert("Actividad turistica creada exitosamente")
+        alert("Activity created successfully")
         setForm({
             name: "",
             difficulty: "",
@@ -84,6 +84,26 @@ const Form = () => {
             season: "",
             countries: [],
         })
+    }
+
+    const deleteCountry = (event) => {
+        setForm({
+            ...form,
+            countries: form.countries.filter((country) => country !== event.target.value)
+        })
+        setErrors(validation({
+            ...form,
+            countries: form.countries.filter((country) => country !== event.target.value)
+        }))
+    }
+
+    const handleErrors = (event) => {
+        event.preventDefault();
+        setErrors(validation({
+            ...form, 
+            countries: [...form.countries, event.target.value]
+        }))
+        handleSubmit(event)
     }
     
     
@@ -124,7 +144,7 @@ const Form = () => {
 
             <div className={styles.checkDiv}>
                     <select className={styles.selectCountry} onChange={handleSeasons}>
-                        <option className={styles.seasons}>Select season</option>
+                        <option className={styles.seasons} value="empty">Select season</option>
                         <option value="summer">Summer</option>
                         <option value="autumn">Autumn</option>
                         <option value="winter">Winter</option>
@@ -144,16 +164,25 @@ const Form = () => {
                 })}
             </select>
                 {errors.countries && <p className={styles.errors}>{errors.countries}</p>}
+                <div>
+                    {form.countries.map((country) => {
+                        return(
+                            <div key={country}>
+                                <p>{country}</p>
+                                <button onClick={deleteCountry} value={country}>X</button>
+                            </div>
+                        )
+                    })}
+                    {/* <ul><li>{form.countries.map(country=> country + ' ,')}</li></ul> */}
+                </div>
 
-            <ul><li>{form.countries.map(country=> country + ' ,')}</li></ul>
-
-            <button className={styles.button} disabled={ errors.name || 
+                <div>
+                    <button className={styles.button} type="submit" disabled={errors.name ||
                 errors.difficulty || 
                 errors.duration || 
                 errors.countries ||
-                errors.season} 
-            type="submit">Create Activity</button>
-
+                errors.season} onClick={handleErrors}>Create Actvitiy</button>
+                </div>
         </form>
 )
 }

@@ -1,5 +1,6 @@
 import { GET_COUNTRIES, GET_COUNTRY, GET_COUNTRIES_BY_NAME, FILTER_BY_CONTINENT,
-        ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION, NEXT_PAGE, PREV_PAGE, FILTER_BY_ACTIVITY} from "./actions-types";
+        ORDER_BY_NAME, POST_ACTIVITY, GET_ACTIVITIES, ORDER_BY_POPULATION, NEXT_PAGE, 
+        PREV_PAGE, FILTER_BY_ACTIVITY} from "./actions-types";
 
 const initialState = {
     countries: [],
@@ -17,14 +18,17 @@ const rootReducer = (state = initialState, action) => {
         return {...state, 
             countries: action.payload,
             allCountries: action.payload,
-            filteredCountries: []
         }
 
         case GET_COUNTRY:
             return {...state, country: action.payload}
 
         case GET_COUNTRIES_BY_NAME: 
-            return {...state, countries: action.payload}
+            return {...state, 
+                countries: action.payload,
+                numPage:1
+            }       
+
 
         case GET_ACTIVITIES:
             return {...state, activities: action.payload}
@@ -46,7 +50,7 @@ const rootReducer = (state = initialState, action) => {
             case ORDER_BY_NAME: 
             let sort = action.payload === 'asc' ? 
             state.countries.sort(function (a, b){
-                if(a.name > b.name) return 1;
+            if(a.name > b.name) return 1;
             if(b.name > a.name) return -1;
             return 0;
         }) :
@@ -84,35 +88,52 @@ const rootReducer = (state = initialState, action) => {
             return {...state, 
             numPage: state.numPage - 1
         }
+
+        //case FILTER_BY_ACTIVITY:
+        //    const filterByActivities = state.allCountries
+        //    const filteredAct = filterByActivities.filter((c) => {return c.name === action.payload })
+        //    if(action.payload === 'All'){
+        //        return{
+        //            ...state,
+        //            countries: state.allCountries,
+        //        }
+        //    }else{
+        //        return{
+        //            ...state,
+        //            countries: filteredAct,
+        //        }
+        //    }
     
-        case FILTER_BY_ACTIVITY:
-        const allCount = state.allCountries
-        const allAct = []
-        const countryActivity = []
-        const activity = action.payload
-        const lastArray = []
-        const activities = state.activities
-        
-        activities.map((act) => {      //hago un map de mi estado activities, si el nombre coincide con el payload,
-            if(act.name === activity){ // lo agrego a mi array allAct con el pais asociado a esa actividad
-                allAct.push(act.Countries)
-            }
-        })
-        allAct.map((element) => {                  // luego mapeo mi array donde se encuentra el pais con la actividad
-            countryActivity.push(element[0].name); // y agrego el nombre a un array countryActvity
-        })
-        for(let name of countryActivity){  // hago la comparacion,
-            allCount.map((element) => {    // si nombre coincide con el nombre del pais, lo agrego al array que hace el filtrado 
-                if(name === element.name)
-                    lastArray.push(element)
-                }
-            )
-        }
-        return{
-            ...state,
-                countries: lastArray,
-                numPage: 1
-            }
+        //case FILTER_BY_ACTIVITY:
+        //    const allAct = []
+        //    const countryActivity = []
+        //    const lastArray = []
+        //    const allCount = state.allCountries
+        //    const activity = action.payload
+        //    const activities = state.activities
+        //
+        //activities.map((act) => {      
+        //    if(act.name === activity){     //me fijo si el payload coincide con el nombre de la activity,
+        //        allAct.push(act.Countries) //si coincide pusheo el pais a un nuevo array [[[{name: 'Argentina'}], [{name: 'Chile}]]]
+        //    }
+        //})
+        //console.log(allAct);
+        //allAct.map((element) => {                  //mapeo el resultado del map de activies para dejar en un string el nombre del pais
+        //    countryActivity.push(element[0].name); // lo agrego a un nuevo array lo recibo en : ['Argentina', 'Chile]
+        //})
+        //console.log(countryActivity);
+        //for(let name of countryActivity){      // recorro los paises y los busco en el estado global de paises
+        //    allCount.map((element) => {        // mapeando el estado global de paises y viendo que pais coincide con el nombre
+        //        if(name === element.name)      // si coincide lo agrego al array
+        //            lastArray.push(element)
+        //        }
+        //    )
+        //}
+        //return{
+        //    ...state,
+        //        countries: lastArray,  
+        //        numPage: 1
+        //    }
 
         default:
             return { ...state};

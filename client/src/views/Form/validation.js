@@ -39,17 +39,14 @@ const validation = (form) => {
     if(!form.season){
         errors.season = "Empty field, please select minimum one";
     }
-    else{
-        errors.season = "";
+    if(form.season === "empty"){
+        errors.season = "Empty field, please select minimum one";
     }
-    
     if(!form.countries.length){
         errors.countries = "Empty field, please select minimum one";
     }
+    
 
-    else{
-        errors.countries = "";
-    }
     
     
     return errors;
