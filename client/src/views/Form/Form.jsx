@@ -167,13 +167,12 @@ const Form = () => {
                 <div>
                     {form.countries.map((country) => {
                         return(
-                            <div key={country}>
+                            <div className={styles.divBtn} key={country}>
                                 <p>{country}</p>
-                                <button onClick={deleteCountry} value={country}>X</button>
+                                <button className={styles.buttonDelete} onClick={deleteCountry} value={country}> X </button>
                             </div>
                         )
                     })}
-                    {/* <ul><li>{form.countries.map(country=> country + ' ,')}</li></ul> */}
                 </div>
 
                 <div>

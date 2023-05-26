@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { orderByName, filterByContinent, orderByPopulation, filterByActivity, getActivities, getCountries } from "../../redux/actions";
+import { orderByName, filterByContinent, orderByPopulation, filterByActivity, getActivities } from "../../redux/actions";
 import styles from "./Filter.module.css"
 
 
@@ -8,18 +8,20 @@ const Filters = () => {
 
     const dispatch = useDispatch();
     
-    const countries = useSelector(state => state.allCountries)
     const activities = useSelector(state => state.activities)
+
 
     useEffect(() => {
         dispatch(getActivities())
-        dispatch(getCountries(countries))
     }, [dispatch])
+
 
     const handleActivity = (event) => {
         const activity = event.target.value
         dispatch(filterByActivity(activity))
     }
+
+
 
     const handlerFilterByContinent = (event) => {
         const continent = event.target.value;
@@ -59,13 +61,12 @@ const Filters = () => {
                 <option value="Mayor">Higher population</option>
                 <option value="Menor">Lower population</option>
             </select>
+
             <div>
                 <select className={styles.divsFilters} onChange={handleActivity}>
                     <option value='All'>Activities</option>
-                        {activities?.map((e) => {console.log(e.name);
-                    return(
-                        <option key={e.id} value={e.name}>{e.name}</option>
-                    ) 
+                    {activities?.map((e) => {
+                        return <option key={e.id} value={e.name}>{e.name}</option>
                     })}
                 </select>
             </div>

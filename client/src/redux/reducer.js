@@ -88,52 +88,18 @@ const rootReducer = (state = initialState, action) => {
             return {...state, 
             numPage: state.numPage - 1
         }
+        
 
-        //case FILTER_BY_ACTIVITY:
-        //    const filterByActivities = state.allCountries
-        //    const filteredAct = filterByActivities.filter((c) => {return c.name === action.payload })
-        //    if(action.payload === 'All'){
-        //        return{
-        //            ...state,
-        //            countries: state.allCountries,
-        //        }
-        //    }else{
-        //        return{
-        //            ...state,
-        //            countries: filteredAct,
-        //        }
-        //    }
-    
-        //case FILTER_BY_ACTIVITY:
-        //    const allAct = []
-        //    const countryActivity = []
-        //    const lastArray = []
-        //    const allCount = state.allCountries
-        //    const activity = action.payload
-        //    const activities = state.activities
-        //
-        //activities.map((act) => {      
-        //    if(act.name === activity){     //me fijo si el payload coincide con el nombre de la activity,
-        //        allAct.push(act.Countries) //si coincide pusheo el pais a un nuevo array [[[{name: 'Argentina'}], [{name: 'Chile}]]]
-        //    }
-        //})
-        //console.log(allAct);
-        //allAct.map((element) => {                  //mapeo el resultado del map de activies para dejar en un string el nombre del pais
-        //    countryActivity.push(element[0].name); // lo agrego a un nuevo array lo recibo en : ['Argentina', 'Chile]
-        //})
-        //console.log(countryActivity);
-        //for(let name of countryActivity){      // recorro los paises y los busco en el estado global de paises
-        //    allCount.map((element) => {        // mapeando el estado global de paises y viendo que pais coincide con el nombre
-        //        if(name === element.name)      // si coincide lo agrego al array
-        //            lastArray.push(element)
-        //        }
-        //    )
-        //}
-        //return{
-        //    ...state,
-        //        countries: lastArray,  
-        //        numPage: 1
-        //    }
+        case FILTER_BY_ACTIVITY:
+            const activityName = action.payload;
+            const updated = state.allCountries.filter((country)=> 
+            country.Activities?.some((activity) => activity.name === activityName)
+            )
+            console.log(activityName);
+            return{
+                ...state,
+                countries: updated,
+            }
 
         default:
             return { ...state};

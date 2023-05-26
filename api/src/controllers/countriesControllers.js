@@ -30,12 +30,16 @@ const getAllCountries = async () => {
             };
         })
         
-        await Country.bulkCreate(countriesList);
-
-        const results = await Country.findAll();
-
-        return results;
+        return await Country.bulkCreate(countriesList);
 }
+
+const findAllCountries = async() => await Country.findAll({
+    include: [ {
+        model: Activity,
+        attributes: ["name", "difficulty", "duration", "season"],
+        through: { attributes: [] },
+    }]
+})
 
 const getCountriesByName = async (name) => {
     const countriesList = await Country.findAll({
@@ -58,6 +62,7 @@ const getCountriesByName = async (name) => {
 
 module.exports = {
     getCountryById,
+    findAllCountries,
     getAllCountries,
     getCountriesByName
 }

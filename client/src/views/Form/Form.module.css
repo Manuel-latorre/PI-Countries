@@ -64,9 +64,40 @@ h1{
     cursor: pointer;
 }
 
-li::marker{
-    color:#0C3968;
+.buttonDelete{
+    display: flex;
+    margin: auto;
+    padding:2px;
+    padding-left:4px;
+    padding-right:4px;
+    border-radius:60%;
+    background-color:red;
+    color:white;
+    border: solid 1px rgb(107, 2, 2);
+    cursor: pointer;
+    margin-left:5px;
+    font-size:10px;
 }
+
+.buttonDelete:hover{
+    transform: scale(1.1);
+}
+
+.divBtn{
+    display: inline-flex;
+    margin:10px;
+    background-color: rgb(87, 84, 84);
+    padding:3px;
+    border-radius:10px;
+    border:solid 1px rgb(136, 130, 130);
+}
+
+.divBtn p{
+    color: white;
+    font-size:14px;
+}
+
+
 
 @media(max-width:1120px){
     .form{
