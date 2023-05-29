@@ -1,14 +1,21 @@
 import { NavLink } from "react-router-dom";
 import "./NavBar.css"
 import mundito from "./assets/MyWorld.png"
+import { getCountries } from "../../redux/actions"
+import { useDispatch } from "react-redux"
 import { useState } from 'react'
 
 const NavBar = () => {
 
     const [isOpen, setIsOpen]  = useState(false)
+    const dispatch = useDispatch();
 
     const handleClick = () => {
         setIsOpen(!isOpen)
+    }
+
+    const reload = () => {
+        dispatch(getCountries());
     }
 
     return(
@@ -20,11 +27,11 @@ const NavBar = () => {
                 <span></span>
             </div>
 
-            <img className={"mundito"} src={mundito} alt="" />
+            <img onClick={reload} className={"mundito"} src={mundito} alt="" />
         
     
             <div className={`nav-links ${isOpen && 'open'}`}>
-                <NavLink className="btnNav" to='/home'> Home </NavLink>
+                <NavLink onClick={reload} className="btnNav" to='/home'> Home </NavLink>
 
                 <NavLink className="btnNav" to='/activities'> Activities </NavLink>
                 

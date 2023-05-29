@@ -6,9 +6,12 @@ const getCountries = async (req, res) => {
     const { name } = req.query;
     try {
         const results = name ? await getCountriesByName(name) : await findAllCountries()
+        if(!results.length){
+            return res.status(404).json({message: 'Country not found'})    
+        }
         res.status(200).json(results)
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(400).send('Country not found')
     }
 }
 

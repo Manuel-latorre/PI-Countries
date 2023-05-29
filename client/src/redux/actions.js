@@ -9,7 +9,7 @@ export const getCountries = () => async (dispatch) => {
         let json = await axios.get("/countries");
         return dispatch({ type: GET_COUNTRIES, payload: json.data });
     } catch (error) {
-        console.log(error);
+        alert('Country not found')
     }
 };
 
@@ -20,7 +20,6 @@ export const getCountriesByName = (name) => {
             let json = await axios.get(`/countries?name=${name}`)
             dispatch({type: GET_COUNTRIES_BY_NAME, payload: json.data})
         } catch (error) {
-            if(error.response)
             alert('Country not found')
         }
     }
