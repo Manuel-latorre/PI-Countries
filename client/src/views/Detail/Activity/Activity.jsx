@@ -1,6 +1,7 @@
 import styles from "./Activity.module.css"
 
 const Activity = ({name, difficulty, duration, season}) => {
+
     return(
     <div className={styles.containerAct}>
         <div>

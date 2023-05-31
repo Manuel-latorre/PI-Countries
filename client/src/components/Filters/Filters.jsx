@@ -21,6 +21,10 @@ const Filters = () => {
         dispatch(filterByActivity(activity))
     }
 
+    let values = activities.map(element => element.name)
+
+    const onlyValues = [...new Set(values)]
+    console.log(onlyValues);
 
 
     const handlerFilterByContinent = (event) => {
@@ -65,8 +69,8 @@ const Filters = () => {
             <div>
                 <select className={styles.divsFilters} onChange={handleActivity}>
                     <option value='All'>Activities</option>
-                    {activities?.map((e) => {
-                        return <option key={e.id} value={e.name}>{e.name}</option>
+                    {onlyValues?.map((e) => {
+                        return <option key={e} value={e}>{e}</option>
                     })}
                 </select>
             </div>

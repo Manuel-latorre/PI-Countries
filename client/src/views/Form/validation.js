@@ -42,6 +42,8 @@ const validation = (form) => {
     if(form.season === "empty"){
         errors.season = "Empty field, please select minimum one";
     }
+
+    
     if(!form.countries.length){
         errors.countries = "Empty field, please select minimum one";
     }

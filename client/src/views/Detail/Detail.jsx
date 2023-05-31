@@ -10,11 +10,11 @@ const Detail = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const country = useSelector(state => state.country)
-    
 
     useEffect(() => {
         dispatch(getCountry(id))
     }, [dispatch, id])
+
 
     return(
     <div className={styles.divDetail}>

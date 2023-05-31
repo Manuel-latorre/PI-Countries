@@ -106,6 +106,7 @@ const Form = () => {
         handleSubmit(event)
     }
     
+    const disabled = (form.name === "" || form.difficulty === "" || form.duration === "" || form.season === "" || form.countries.length === 0)
     
     
     useEffect(() => {
@@ -176,7 +177,8 @@ const Form = () => {
                 </div>
 
                 <div>
-                    <button className={styles.button} type="submit" disabled={errors.name ||
+                    <button className={styles.button} type="submit" disabled={ disabled ||
+                errors.name ||
                 errors.difficulty || 
                 errors.duration || 
                 errors.countries ||

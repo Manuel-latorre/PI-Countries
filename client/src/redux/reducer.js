@@ -92,13 +92,13 @@ const rootReducer = (state = initialState, action) => {
 
         case FILTER_BY_ACTIVITY:
             const activityName = action.payload;
-            const filterAct = activityName === 'All' ? state.allCountries :
-            state.allCountries.filter((country)=> 
-            country.Activities?.some((activity) => activity.name === activityName)
+            const filterAct = activityName === 'All' ? state.allCountries :         
+            state.allCountries.filter((country)=>                                   
+            country.Activities?.some((activity) => activity.name === activityName)  
             )
             return{
                 ...state,
-                countries: filterAct,
+                countries: filterAct, 
             }
 
         default:
