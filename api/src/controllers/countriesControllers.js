@@ -41,6 +41,7 @@ const findAllCountries = async() => await Country.findAll({
     }]
 })
 
+
 const getCountriesByName = async (name) => {
     const countriesList = await Country.findAll({
         where: { name: { [Op.iLike]: `%${name}%`} },

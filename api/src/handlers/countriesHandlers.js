@@ -1,5 +1,5 @@
 const { getCountryById, getCountriesByName, getAllCountries, findAllCountries} = require('../controllers/countriesControllers')
-const { Country, Activity } = require("../db")
+
 
 
 const getCountries = async (req, res) => {
